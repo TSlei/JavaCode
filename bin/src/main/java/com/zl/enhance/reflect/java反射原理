@@ -1,0 +1,15 @@
+反射的基石  ---> Class类
+1.java程序中的各个java类属于同一类事物，描述这类事务的java类就是Class。
+
+对比提问：Person类代表人，它的实力对象就是张三，李四这样一个个具体的人，Class对象代表java类，它的各个实例对象又分别对应什么呢？
+	对应各个类在内存中的字节码，例如Person类的字节码，ArrayList类的字节码等等
+	一个类被类加载器加载到类中，占用一片存储空间，这个空间里面的内容就是类的字节码，不同的类的字节码是不同的，所以他们在内存中的内容是不同的。
+
+得到字节码对象的三种方式：
+1.类名.class    例如：System.class
+2.对象.getClass()    例如：new Date().getClass()
+3.Class.forName("类名")		例如：Class.forName("java.util.Date")
+
+反射就是把java类中的各种成分映射成相应的java类。
+比如：java类中的Class类提供了一系列的方法，来获得java类其中的变量，方法，构造方法，修饰符，包等信，这些信息就是用相应类的实例对象来表示，它们
+是Field、Method、Contructor、Package等等
