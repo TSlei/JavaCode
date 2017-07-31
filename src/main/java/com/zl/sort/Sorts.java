@@ -7,18 +7,12 @@ public class Sorts {
 
 	public static void main(String[] args) {
 		int[] arr = { 10, 3, 5, 2, 7, 9, 8, 1, 300, 200, 250 };
-		// int max = 10000;
-		// int[] arr = new int[max];
-		// Random random = new Random();
-		// for (int i = 0; i < max; i++) {
-		// arr[i] = random.nextInt(max * 2);
-		// }
 
 		TimeComp tc = new TimeComp();
-		sort(arr);
+		quicksort(arr, 0, arr.length - 1);
 		System.out.println("use:" + tc.comsum());
-		//print(arr);
-		System.out.println("swapCount = " + swapCount);
+		print(arr);
+//		System.out.println("swapCount = " + swapCount);
 	}
 
 	// 选择排序
@@ -38,6 +32,7 @@ public class Sorts {
 			}
 		}
 	}
+
 
 	// 冒泡
 	public static void mpsort(int[] arr) {
@@ -59,17 +54,28 @@ public class Sorts {
 		}
 	}
 
-	public static void xesort(int[] arr) {
-		// int d = arr.length;
-		// while (true) {
-		// d = d / 2;
-		//
-		// for(int i = )
-		//
-		// if (d == 1) {
-		// break;
-		// }
-		// }
+	//快速排序
+	public static void quicksort(int a[], int low, int hight) {
+		int i, j, index;
+		if (low > hight) {
+			return;
+		}
+		i = low;
+		j = hight;
+		index = a[i]; // 用子表的第一个记录做基准
+		while (i < j) { // 从表的两端交替向中间扫描
+			while (i < j && a[j] >= index)
+				j--;
+			if (i < j)
+				a[i++] = a[j];// 用比基准小的记录替换低位记录
+			while (i < j && a[i] < index)
+				i++;
+			if (i < j) // 用比基准大的记录替换高位记录
+				a[j--] = a[i];
+		}
+		a[i] = index;// 将基准数值替换回 a[i]
+		quicksort(a, low, i - 1); // 对低子表进行递归排序
+		quicksort(a, i + 1, hight); // 对高子表进行递归排序
 	}
 
 	public static void heapsort(int[] arr) {
@@ -85,15 +91,16 @@ public class Sorts {
 
 	}
 
-//	public static void print(int[] arr) {
-//		StringJoiner sj = new StringJoiner(",", "[", "]");
-//		Arrays.stream(arr).forEach(x -> sj.add("" + x));
-//		System.out.println(sj);
-//	}
 
 	public static void compareAndSwap(int[] arr, int m, int n) {
 		if (arr[m] > arr[n]) {
 			swap(arr, m, n);
+		}
+	}
+
+	public static void print(int[] arr){
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
 		}
 	}
 
@@ -102,8 +109,5 @@ public class Sorts {
 		int tmp = arr[m];
 		arr[m] = arr[n];
 		arr[n] = tmp;
-//		arr[m] = arr[m] ^ arr[n];
-//		arr[n] = arr[m] ^ arr[n];
-//		arr[m] = arr[m] ^ arr[n];
 	}
 }

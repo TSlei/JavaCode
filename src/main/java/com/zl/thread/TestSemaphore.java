@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 /**
- * 
  *	 	boolean	tryAcquire(int permits, long timeout, TimeUnit unit) 
 	            如果在给定的等待时间内此信号量有可用的所有许可，并且当前线程未被中断，则从此信号量获取给定数目的许可。
 	    boolean	tryAcquire(long timeout, TimeUnit unit) 
