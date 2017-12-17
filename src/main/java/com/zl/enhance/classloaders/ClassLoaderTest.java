@@ -2,7 +2,6 @@ package com.zl.enhance.classloaders;
 
 import java.util.Date;
 
-
 /*	类加载器
  * 	系统默认三个主要类加载器，每个类负责加载特定位置的类:   父子级关系管理图
  * 			BootStrap (父) ------> JDK安装目录下的jdk目录下的JRE/lib/rt.jar     
@@ -39,7 +38,6 @@ import java.util.Date;
  * 
  * */
 
-
 /*
  * 继承ClassLoader类
  * 重写findClass方法而不是loadClass方法，因为loadClass方法中有整个提交父类加载，退回给子类加载的流程，重写后会打乱流程，所以只需要重写findClass这个模块
@@ -52,24 +50,25 @@ import java.util.Date;
  * 
  **/
 public class ClassLoaderTest {
-	
+
 	public static void main(String[] args) throws Exception {
 		System.out.println(ClassLoaderTest.class.getClassLoader().getClass().getName());
-		
-	//	System.out.println(System.class.getClassLoader());
-		
-		ClassLoader loader=ClassLoaderTest.class.getClassLoader();
-		while(loader!=null){
+
+		// System.out.println(System.class.getClassLoader());
+
+		ClassLoader loader = ClassLoaderTest.class.getClassLoader();
+		while (loader != null) {
 			System.out.println(loader.getClass().getName());
-			loader=loader.getParent();
+			loader = loader.getParent();
 		}
 		System.out.println(loader);
-		
-		//System.out.println(new ClassLoaderAttachment().toString());
-		//将父类中的需要加载的class文件删掉，父类找不到就会给子类去找，就会调用自己的类加载器
-		Class clazz=new MyClassLoader("zllib").loadClass("ClassLoaderAttachment"); //Enhance.ClassLoaders.ClassLoaderAttachment 加不加包名都一样
-		//ClassLoaderAttachment d1=(ClassLoaderAttachment)clazz.newInstance();
-		Date d2=(Date)clazz.newInstance();
+
+		// System.out.println(new ClassLoaderAttachment().toString());
+		// 将父类中的需要加载的class文件删掉，父类找不到就会给子类去找，就会调用自己的类加载器
+		Class clazz = new MyClassLoader("zllib").loadClass("ClassLoaderAttachment"); // Enhance.ClassLoaders.ClassLoaderAttachment
+																						// 加不加包名都一样
+		// ClassLoaderAttachment d1=(ClassLoaderAttachment)clazz.newInstance();
+		Date d2 = (Date) clazz.newInstance();
 		System.out.println(d2);
 	}
 }
