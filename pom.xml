@@ -9,7 +9,7 @@
 		<spring.version>4.1.3.RELEASE</spring.version>
 		<aspectj.version>1.6.11</aspectj.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<httpclient.version>4.3.6</httpclient.version>
+		<httpclient.version>4.5.13</httpclient.version>
 	</properties>
 
 
